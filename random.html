@@ -80,8 +80,16 @@
         // 重置
         _all.innerText = '名单有：';
         _show.innerHTML = '抽取人员：';
+        // 先判断是不是空格分隔符再判断判断是中文还是英文逗号分隔符
+
+        if(names.value.indexOf(' ') > -1){
+        	var str = ' ';
+        }else{
+        	var str = names.value.indexOf('，') > -1 ? '，' : ',';
+        }                
+        
         // 判断是中文还是英文逗号分隔符
-        var str = names.value.indexOf('，') > -1 ? '，' : ',';
+        //var str = names.value.indexOf('，') > -1 ? '，' : ',';
 
         var brr = names.value.split(str);
         /*
@@ -90,8 +98,8 @@
         *
         * */
         arr = deleteBlank(Array.from(new Set(brr)));
-
-        _all.innerText = _all.innerText + ' ' + arr.join('   ');
+        //增加序号
+        _all.innerText =(i+1) +  _all.innerText + ' ' + arr.join('   ');
     }
     random.onclick = function () {
         times = _times.value - 0; // 隐式转换为数字
